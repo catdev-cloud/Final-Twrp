@@ -15,9 +15,9 @@ PRODUCT_PACKAGES += \
 
 #Dynamic partitions
 
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
-AB_OTA_UPDATER:= true
-AB_OTA_PARTITIONS:= boot system vendor product system_ext
+#PRODUCT_USE_DYNAMIC_PARTITIONS := true
+#AB_OTA_UPDATER:= true
+#AB_OTA_PARTITIONS:= boot system vendor product system_ext
 
 #API level
 
