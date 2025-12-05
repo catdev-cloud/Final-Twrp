@@ -1,0 +1,31 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system)
+# must not specify MF_CHECK, and it must appear before any filesystems that do
+# specify MF_CHECK.
+
+# Mount point       Fstype		Device			      Device2		         Flags
+/boot               emmc		/dev/block/by-name/boot                      flags=backup=1;flashimg=1;display="Boot"
+/dtbo               emmc		/dev/block/by-name/dtbo                      flags=backup=1;flashimg=1;display="Dtbo"
+/recovery           emmc		/dev/block/by-name/recovery                  flags=backup=1;flashimg=1;display="Recovery"
+
+# Direct image flashing
+/system_image       emmc        /dev/block/by-name/system                    flags=backup=1;flashimg=1
+/odm_image          emmc        /dev/block/by-name/odm                       flags=backup=1;flashimg=1;display="ODM Image"
+/prodnv_image       emmc        /dev/block/by-name/prodnv                    flags=backup=1;flashimg=1;display="ProdNV Image"
+/vendor_image       emmc        /dev/block/by-name/vendor                    flags=backup=1;flashimg=1
+
+# ETC Moint Point
+/cache              ext4		/dev/block/by-name/cache                     flags=backup=1;display="Cache"
+/efs                ext4		/dev/block/by-name/efs                       flags=backup=1;display="EFS"
+/sec_efs            ext4		/dev/block/by-name/sec_efs                   flags=backup=1;display="SEC EFS"
+
+/data               ext4        /dev/block/by-name/userdata                  noatime,nosuid,nodev,discard,usrquota,grpquota,fsync_mode=nobarrier,reserve_root=32768,resgid=5678,inlinecrypt	latemount,wait,quota,check,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption,reservedsize=128M,checkpoint=fs,
+/misc               emmc		/dev/block/by-name/misc                      flags=backup=1;display="Misc"
+/optics_image     	emmc		/dev/block/by-name/optics	                 flags=backup=1;flashimg=1;display="Optics Image"
+/prism_image	    emmc		/dev/block/by-name/prism		             flags=backup=1;flashimg=1;display="Prism Image"
+/vbmeta             emmc		/dev/block/by-name/vbmeta                    flags=backup=1;flashimg=1;display="Vbmeta Samsung"
+
+# Removable storage
+/storage	        auto        /data/media/0                  		     	 flags=backup=1;display="Internal Storage";usermrf;fsflags="bind,utf8";removable
+/external_sd        auto        /dev/block/mmcblk1p1    /dev/block/mmcblk1   flags=display="Micro SD card";storage;wipeingui;removable
+/usb-otg            vfat        /dev/block/sda1         /dev/block/sda       flags=display="USB-OTG";storage;wipeingui;removable
